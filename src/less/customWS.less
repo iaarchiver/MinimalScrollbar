@@ -1,0 +1,55 @@
+
+/////////////////////////////////// WEBKIT-SCROLLBAR //
+
+::-webkit-scrollbar {
+  width: 5px !important;
+  height: 5px !important;
+  outline: 1px solid transparent;
+}
+
+::-webkit-scrollbar-button:start:decrement,
+::-webkit-scrollbar-button:end:increment {
+    height: 0; width: 0;
+    display:none;
+}
+
+::-webkit-scrollbar-track-piece{
+  margin:0; padding: 0;
+  width: 5px !important;
+  height: 5px !important;
+  border:1px solid #666 !important;
+  background: rgba(0,0,0,.5) url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAADCAYAAABWKLW/AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QUQ5QjA1ODM0NkZDMTFFMEFCMkNDQzg2RTJGRkU2MDMiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QUQ5QjA1ODQ0NkZDMTFFMEFCMkNDQzg2RTJGRkU2MDMiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo0MDJCMDgwODQ2Q0ExMUUwQUIyQ0NDODZFMkZGRTYwMyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpBRDlCMDU4MjQ2RkMxMUUwQUIyQ0NDODZFMkZGRTYwMyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PtHjDl8AAAAeSURBVHjaYvj//78vEDOAMAOUARZgBItAgC9AgAEADJIV1FV72yoAAAAASUVORK5CYII=') repeat;
+}
+
+::-webkit-scrollbar-thumb{
+  border:1px solid #777 !important;
+  width: 5px !important;
+  background-color: #f4f4f4 !important;
+  z-index: 9999;
+  -webkit-border-radius: 8px;
+  &:vertical{
+
+  }
+  &:horizontal{
+
+  }
+}
+
+::-webkit-scrollbar-corner {
+  background: rgba(0,0,0,.5);
+  border: 1px solid #777;
+}
+
+div,
+textarea,
+iframe
+{
+  & ::-webkit-scrollbar-thumb:hover{
+    background-color: #dfdfdf !important;
+    border:1px solid #666 !important;
+  }
+  & ::-webkit-scrollbar-thumb:active {
+    background: #ccc !important;
+    border:1px solid #222 !important;
+  }
+}
