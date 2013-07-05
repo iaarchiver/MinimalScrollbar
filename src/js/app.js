@@ -50,7 +50,7 @@
 		linkElement.type = 'text/css';
 		linkElement.href = chrome.extension.getURL(pathToCSS);
 
-		document.documentElement.insertBefore(linkElement);
+		document.documentElement.insertBefore(linkElement, document.head);
 	}
 
 	function hideWebkitScrollbar(){
@@ -59,7 +59,28 @@
 			'html::-webkit-scrollbar{display:none !important}'+
 			'body::-webkit-scrollbar{display:none !important}';
 
-		document.documentElement.insertBefore(styleElement);
+		document.documentElement.insertBefore(styleElement, document.head);
+	}
+
+	function redrawWebkitScrollbar(){
+		console.log('called');
+		var body_overflow = document.body.style.overflow;
+		document.body.style.overflow = 'hidden';
+		setTimeout(function(){
+			document.body.style.overflow = body_overflow;
+		},0);
+	}
+
+	function isHiddenWebkitScrollbar(){
+		var noVerticalWS = (document.body.clientWidth == window.innerWidth),
+			noHorizontalWS = (document.body.clientHeight == window.innerHeight);
+
+		return (noVerticalWS && noHorizontalWS);
+	}
+
+	function domReady(callb){
+		if (document.readyState != 'loading') callb();
+		window.addEventListener('DOMContentLoaded', callb, false);
 	}
 
 	// INITIALIZE ///////////////////////////////////////////////////////////////
@@ -83,11 +104,18 @@
 			// load CSS for webkit-scrollbar if needed
 			if (options.useCustomWS) loadAdditionalCSS('customWS.min.css');
 
+			// redraw body
+			domReady(function(){
+				if (!isHiddenWebkitScrollbar()) redrawWebkitScrollbar();
+			})
+
 			// stop before generates MS if is iframed
 			if (isIframed(options)) return false;
 
 			// Generate MinimalScrollbars
 			new window.MinimalScrollbar(options);
+
+
 		});
 
 	}) ();
