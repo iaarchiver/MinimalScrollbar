@@ -56,7 +56,6 @@
 	function hideWebkitScrollbar(){
 		var styleElement = document.createElement('style');
 		styleElement.innerHTML =
-			'<!-- minimal scrollbar extension -->' +
 			'html::-webkit-scrollbar{display:none !important}'+
 			'body::-webkit-scrollbar{display:none !important}';
 
