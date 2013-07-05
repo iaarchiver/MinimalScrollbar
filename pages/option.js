@@ -16,7 +16,8 @@
 		},
 		excluded: "https://chrome.google.com, "
 				+ "https://mail.google.com, "
-				+ "https://groups.google.com"
+				+ "https://groups.google.com, "
+				+ "mail.live.com"
 	};
 
 	// modifiable option list
@@ -98,7 +99,7 @@
 	}
 
 	function resetSettings(){
-		if (!window.confirm('reset?')) return false;
+		if (!window.confirm(RESETMESSAGE)) return false;
 
 		chrome.storage.sync.set(defaultOptions, function(){
 			if(chrome.extension.lastError !== undefined)
