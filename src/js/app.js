@@ -17,7 +17,8 @@
 		},
 		excluded: "https://chrome.google.com, "
 				+ "https://mail.google.com, "
-				+ "https://groups.google.com"
+				+ "https://groups.google.com,"
+				+ "mail.live.com"
 	}
 
 
@@ -28,9 +29,12 @@
 
 		var domains = _opt.excluded.split(/[,\n] ?/);
 		for (var i = domains.length; i--;) {
-			if (document.URL.indexOf(domains[i]) === 0) {
-				return true;
-			}
+
+			// detect complete URL match
+			if (document.URL.indexOf(domains[i]) === 0) return true;
+			
+			// detect domain match
+			if (document.location.host.indexOf(domains[i]) > -1) return true;
 		}
 		return false;
 	}
