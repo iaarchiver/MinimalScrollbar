@@ -22,11 +22,13 @@
 	// modifiable option list
 	var optionList = [
 		'autohide',
-		'useCustomWS'
+		'useCustomWS',
+		'excluded'
 	];
 
 	var autohide_option,
-		useCustomWS_option;
+		useCustomWS_option,
+		excluded_option;
 
 	var SAVEDMESSAGE = 'Saved!! Need to reload tabs to apply changes',
 		RESETMESSAGE = 'Restore Default Settings?';
@@ -50,6 +52,12 @@
 		useCustomWS_option = document.getElementById('useCustomWS');
 		useCustomWS_option.addEventListener('change', function(){
 			saveSettings({'useCustomWS': useCustomWS_option.checked});
+		}, false);
+
+		// useCustomWS option
+		excluded_option = document.getElementById('excluded');
+		excluded_option.addEventListener('keyup', function(){
+			saveSettings({'excluded': excluded_option.value});
 		}, false);
 
 		// reset button: // -disabled for now
@@ -81,6 +89,9 @@
 
 			// restore useCustomWS option
 			useCustomWS_option.checked = items.useCustomWS;
+
+			// restore excluded option
+			excluded_option.value = items.excluded;
 
 			callback();
 		});

@@ -63,12 +63,6 @@
 
 	(function init(){
 
-		// cancel if is excluded url
-		if (isExcluded(defaultOptions)) return false;
-
-		// add CSS to disable webkit-scrollbar appearance
-		if (!isIframed(defaultOptions)) hideWebkitScrollbar();
-
 		// get synced option data
 		chrome.storage.sync.get(function(items){
 			if(chrome.extension.lastError !== undefined)
@@ -76,6 +70,12 @@
 
 			// restore option settings if exists
 			var options = (Object.keys(items).length)? items: defaultOptions;
+
+			// cancel if is excluded url
+			if (isExcluded(options)) return false;
+
+			// add CSS to disable webkit-scrollbar appearance
+			if (!isIframed(options)) hideWebkitScrollbar();
 
 			// load CSS for webkit-scrollbar if needed
 			if (options.useCustomWS) loadAdditionalCSS('customWS.min.css');
