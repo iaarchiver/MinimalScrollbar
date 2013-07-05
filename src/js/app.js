@@ -49,6 +49,16 @@
 		document.documentElement.insertBefore(linkElement);
 	}
 
+	function hideWebkitScrollbar(){
+		var styleElement = document.createElement('style');
+		styleElement.innerHTML =
+			'<!-- minimal scrollbar extension -->' +
+			'html::-webkit-scrollbar{display:none !important}'+
+			'body::-webkit-scrollbar{display:none !important}';
+
+		document.documentElement.insertBefore(styleElement);
+	}
+
 	// INITIALIZE ///////////////////////////////////////////////////////////////
 
 	(function init(){
@@ -57,8 +67,7 @@
 		if (isExcluded(defaultOptions)) return false;
 
 		// add CSS to disable webkit-scrollbar appearance
-		if (!isIframed(defaultOptions)) loadAdditionalCSS('hideWS.min.css');
-		/* THIS MUST BE EXECUTED BEFORE BROWSER RENDERING */
+		if (!isIframed(defaultOptions)) hideWebkitScrollbar();
 
 		// get synced option data
 		chrome.storage.sync.get(function(items){

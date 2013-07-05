@@ -7,7 +7,6 @@ module.exports = function(grunt) {
 			dev: {
 				files: {
 					"../src/style.css": "../src/less/style.less",
-					"../src/hideWS.css": "../src/less/hideWS.less",
 					"../src/customWS.css": "../src/less/customWS.less",
 					"../pages/option.css": "../pages/option.less"
 				}
@@ -18,7 +17,6 @@ module.exports = function(grunt) {
 				},
 				files: {
 					"../style.min.css": "../src/less/style.less",
-					"../hideWS.min.css": "../src/less/hideWS.less",
 					"../customWS.min.css": "../src/less/customWS.less",
 					"../pages/option.css": "../pages/option.less"
 				}
