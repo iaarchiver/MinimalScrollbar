@@ -1,9 +1,9 @@
 {
   "name": "Minimal Scrollbar",
-  "version": "0.2.6",
+  "version": "0.2.8",
   "manifest_version": 2,
   "description": "Minimal but Useful Scrollbars",
-  "permissions": ["storage","tabs"],
+  "permissions": ["storage"],
   "icons": {
     "48": "icons/minimalscrollbar-48.png",
     "128": "icons/minimalscrollbar-128.png"

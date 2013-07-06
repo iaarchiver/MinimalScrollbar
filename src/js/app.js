@@ -63,11 +63,17 @@
 	}
 
 	function redrawWebkitScrollbar(){
-		console.log('called');
-		var body_overflow = document.body.style.overflow;
-		document.body.style.overflow = 'hidden';
+		var html_element = document.getElementsByTagName('html')[0],
+			body_element = document.body;
+
+		var html_overflow_cache = html_element.style.overflow,
+			body_overflow_cache = body_element.style.overflow;
+
+		html_element.style.overflow = 'hidden';
+		body_element.style.overflow = 'hidden';
 		setTimeout(function(){
-			document.body.style.overflow = body_overflow;
+			html_element.style.overflow = html_overflow_cache;
+			body_element.style.overflow = body_overflow_cache;
 		},0);
 	}
 
