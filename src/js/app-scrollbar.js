@@ -110,8 +110,8 @@
 			}
 
 			// disabled scrollbar if oversized
-			this.scrollrail_v.isActive = (window.innerHeight < document.body.scrollHeight);
-			this.scrollrail_h.isActive = (window.innerWidth < document.body.scrollWidth);
+			this.scrollrail_v.isActive = (window.innerHeight+1 < document.body.scrollHeight); // +1 for errors
+			this.scrollrail_h.isActive = (window.innerWidth+1 < document.body.scrollWidth); // +1 for errors
 
 			this.scrollrail_v.className = (!this.scrollrail_v.isActive)? 'disabled': '';
 			this.scrollrail_h.className = (!this.scrollrail_h.isActive)? 'disabled': '';
@@ -135,12 +135,13 @@
 			// get zoom levels
 			this.zoom_browser = (window.outerWidth-2)/window.innerWidth;
 			this.zoom_body = document.body.style.zoom || 1;
+
 			/* may needs refresh() after body.style.zoom changed */
 			var zoom = this.zoom_browser * this.zoom_body;
 
 			// adjust rail size in zoom
-			this.scrollrail_v.style.width = this.rail_size/zoom+'px';
-			this.scrollrail_h.style.height = this.rail_size/zoom+'px';
+			this.scrollrail_v.style.width = this.options.rail.size/zoom+'px';
+			this.scrollrail_h.style.height = this.options.rail.size/zoom+'px';
 
 			// adjust scrollbar-thumb's border-radius in zoom
 			this.scrollbar_v.style.webkitBorderRadius = 5/zoom+'px';
