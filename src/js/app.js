@@ -110,11 +110,9 @@
 			// load CSS for webkit-scrollbar if needed
 			if (options.useCustomWS) loadAdditionalCSS('customWS.min.css');
 
-			// stop before generates MS if is iframed
-			if (isIframed(options)) return false;
-
-			// Generate MinimalScrollbars
-			new window.MinimalScrollbar(options);
+			// Generate MinimalScrollbars if is not iframed
+			if (!isIframed(options))
+				new window.MinimalScrollbar(options);
 
 			// redraw body
 			domReady(function(){
