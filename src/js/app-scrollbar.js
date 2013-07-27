@@ -22,14 +22,20 @@
 		this.grabbedId;		// grabbing bar's id
 
 		this.bar_v; this.bar_h;			// scrollbar size
+		this.margin_v; this.margin_h;	// scrollbar margin
 		this.cacheY; this.cacheX;		// scrollbar pos data
 		this.winHeight; this.winWidth;	// window size
 		this.docHeight; this.docWidth;	// document size
 
-		this.options = _opt
+		this.options = _opt;
 		// _opt.autohide: BOOL
 		// _opt.useCustomWS: BOOL
 		// _opt.rail: {size:[px], margin:[px], corner:[px]}
+
+		this.margin_v = this.options.rail.margin;
+		this.margin_h = this.options.rail.margin;
+
+		this.options.rail.min_size = 25;
 
 		this.init();
 	}
@@ -83,10 +89,10 @@
 			this.refresh(e);
 
 			// Update Bar Positions
-			var scrollTop = document.body.scrollTop;
-			var scrollLeft = document.body.scrollLeft;
-			this.scrollbar_v.style.top = (this.winHeight*(scrollTop/this.docHeight)+this.options.rail.margin)/this.zoom_body+'px';
-			this.scrollbar_h.style.left = (this.winWidth*(scrollLeft/this.docWidth)+this.options.rail.margin)/this.zoom_body+'px';
+			var scrollTop = document.body.scrollTop + this.winHeight/2; // centre pos of scrollTop
+			var scrollLeft = document.body.scrollLeft + this.winWidth/2; // centre pos of scrollLeft
+			this.scrollbar_v.style.top = (this.winHeight*(scrollTop/this.docHeight)-this.bar_v/2+this.margin_v)/this.zoom_body+'px';
+			this.scrollbar_h.style.left = (this.winWidth*(scrollLeft/this.docWidth)-this.bar_h/2+this.margin_h)/this.zoom_body+'px';
 		},
 		refresh: function(){
 			// cancel if is hidden aleready
@@ -117,8 +123,8 @@
 			this.scrollrail_h.className = (!this.scrollrail_h.isActive)? 'disabled': '';
 
 			// get basic vars
-			var wh = window.innerHeight - this.options.rail.margin * 2 - ((this.scrollrail_h.isActive)? this.options.rail.corner: 0),
-				ww = window.innerWidth - this.options.rail.margin * 2 - ((this.scrollrail_v.isActive)? this.options.rail.corner: 0),
+			var wh = window.innerHeight - this.margin_v * 2 - ((this.scrollrail_h.isActive)? this.options.rail.corner: 0),
+				ww = window.innerWidth - this.margin_h * 2 - ((this.scrollrail_v.isActive)? this.options.rail.corner: 0),
 				dh = document.body.scrollHeight,
 				dw = document.body.scrollWidth;
 
@@ -150,6 +156,23 @@
 			// calculate bar size
 			this.bar_v = this.winHeight*(window.innerHeight/this.docHeight)/this.zoom_body;
 			this.bar_h = this.winWidth*(window.innerWidth/this.docWidth)/this.zoom_body;
+
+			// limit minimum bar_v size
+			if (this.bar_v < this.options.rail.min_size){
+				// calibrate margin_v size
+				this.margin_v = this.options.rail.margin + (this.options.rail.min_size-this.bar_v)/2;
+				this.bar_v = this.options.rail.min_size;
+			}else{
+				this.margin_v = this.options.rail.margin;
+			}
+			// limit minimum bar_h size
+			if (this.bar_h < this.options.rail.min_size){
+				// calibrate margin_h size
+				this.margin_h = this.options.rail.margin + (this.options.rail.min_size-this.bar_h)/2;
+				this.bar_h = this.options.rail.min_size;
+			}else{
+				this.margin_h = this.options.rail.margin;
+			}
 
 			// set bar size
 			this.scrollbar_v.style.height = this.bar_v+'px';
