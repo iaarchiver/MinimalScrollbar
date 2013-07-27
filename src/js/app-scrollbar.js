@@ -37,6 +37,8 @@
 		this.margin_v = this.rail.margin;
 		this.margin_h = this.rail.margin;
 
+		this.zoom_browser = 1;
+
 		this.options = _opt;
 		// _opt.autohide: [BOOL]
 		// _opt.useCustomWS: [BOOL]
@@ -93,8 +95,8 @@
 			this.refresh(e);
 
 			// Update Bar Positions
-			var scrollTop = document.body.scrollTop + this.winHeight/2; // centre pos of scrollTop
-			var scrollLeft = document.body.scrollLeft + this.winWidth/2; // centre pos of scrollLeft
+			var scrollTop = document.body.scrollTop + window.innerHeight/2; // centre pos of scrollTop
+			var scrollLeft = document.body.scrollLeft + window.innerWidth/2; // centre pos of scrollLeft
 			this.scrollbar_v.style.top = (this.winHeight*(scrollTop/this.docHeight)-this.bar_v/2+this.margin_v)/this.zoom_body+'px';
 			this.scrollbar_h.style.left = (this.winWidth*(scrollLeft/this.docWidth)-this.bar_h/2+this.margin_h)/this.zoom_body+'px';
 		},
@@ -127,8 +129,8 @@
 			this.scrollrail_h.className = (!this.scrollrail_h.isActive)? 'disabled': '';
 
 			// get basic vars
-			var wh = window.innerHeight - this.margin_v * 2 - ((this.scrollrail_h.isActive)? this.rail.corner: 0),
-				ww = window.innerWidth - this.margin_h * 2 - ((this.scrollrail_v.isActive)? this.rail.corner: 0),
+			var wh = window.innerHeight - this.margin_v * 2 - ((this.scrollrail_h.isActive)? this.rail.corner/this.zoom_browser: 0),
+				ww = window.innerWidth - this.margin_h * 2 - ((this.scrollrail_v.isActive)? this.rail.corner/this.zoom_browser: 0),
 				dh = document.body.scrollHeight,
 				dw = document.body.scrollWidth;
 
@@ -164,19 +166,19 @@
 			// limit minimum bar_v size
 			if (this.bar_v < this.rail.min_size){
 				// calibrate margin_v size
-				this.margin_v = this.rail.margin + (this.rail.min_size - this.bar_v)/2;
+				this.margin_v = this.rail.margin/this.zoom_browser + (this.rail.min_size - this.bar_v)/2;
 				this.bar_v = this.rail.min_size;
 			}else{
-				this.margin_v = this.rail.margin;
+				this.margin_v = this.rail.margin/this.zoom_browser;
 			}
 
 			// limit minimum bar_h size
 			if (this.bar_h < this.rail.min_size){
 				// calibrate margin_h size
-				this.margin_h = this.rail.margin + (this.rail.min_size -  this.bar_h)/2;
+				this.margin_h = this.rail.margin/this.zoom_browser + (this.rail.min_size -  this.bar_h)/2;
 				this.bar_h = this.rail.min_size;
 			}else{
-				this.margin_h = this.rail.margin;
+				this.margin_h = this.rail.margin/this.zoom_browser;
 			}
 
 			// set bar size
