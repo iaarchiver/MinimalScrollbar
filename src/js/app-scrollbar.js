@@ -15,6 +15,13 @@
 		this.scrollrail_v.id = 'scrollrail-vertical';
 		this.scrollrail_h.id = 'scrollrail-horizontal';
 
+		this.rail = {
+			size: 12,		// [px]
+			min_size: 25,	// [px]
+			margin: 2,		// [px]
+			corner: 4		// [px]
+		};
+
 		this.zoom_browser;	// browser's zoom value
 		this.zoom_body;	// document.body.zoom value
 
@@ -27,15 +34,12 @@
 		this.winHeight; this.winWidth;	// window size
 		this.docHeight; this.docWidth;	// document size
 
+		this.margin_v = this.rail.margin;
+		this.margin_h = this.rail.margin;
+
 		this.options = _opt;
-		// _opt.autohide: BOOL
-		// _opt.useCustomWS: BOOL
-		// _opt.rail: {size:[px], margin:[px], corner:[px]}
-
-		this.margin_v = this.options.rail.margin;
-		this.margin_h = this.options.rail.margin;
-
-		this.options.rail.min_size = 25;
+		// _opt.autohide: [BOOL]
+		// _opt.useCustomWS: [BOOL]
 
 		this.init();
 	}
@@ -123,8 +127,8 @@
 			this.scrollrail_h.className = (!this.scrollrail_h.isActive)? 'disabled': '';
 
 			// get basic vars
-			var wh = window.innerHeight - this.margin_v * 2 - ((this.scrollrail_h.isActive)? this.options.rail.corner: 0),
-				ww = window.innerWidth - this.margin_h * 2 - ((this.scrollrail_v.isActive)? this.options.rail.corner: 0),
+			var wh = window.innerHeight - this.margin_v * 2 - ((this.scrollrail_h.isActive)? this.rail.corner: 0),
+				ww = window.innerWidth - this.margin_h * 2 - ((this.scrollrail_v.isActive)? this.rail.corner: 0),
 				dh = document.body.scrollHeight,
 				dw = document.body.scrollWidth;
 
@@ -146,8 +150,8 @@
 			var zoom = this.zoom_browser * this.zoom_body;
 
 			// adjust rail size in zoom
-			this.scrollrail_v.style.width = this.options.rail.size/zoom+'px';
-			this.scrollrail_h.style.height = this.options.rail.size/zoom+'px';
+			this.scrollrail_v.style.width = this.rail.size/zoom+'px';
+			this.scrollrail_h.style.height = this.rail.size/zoom+'px';
 
 			// adjust scrollbar-thumb's border-radius in zoom
 			this.scrollbar_v.style.webkitBorderRadius = 5/zoom+'px';
@@ -158,20 +162,21 @@
 			this.bar_h = this.winWidth*(window.innerWidth/this.docWidth)/this.zoom_body;
 
 			// limit minimum bar_v size
-			if (this.bar_v < this.options.rail.min_size){
+			if (this.bar_v < this.rail.min_size){
 				// calibrate margin_v size
-				this.margin_v = this.options.rail.margin + (this.options.rail.min_size-this.bar_v)/2;
-				this.bar_v = this.options.rail.min_size;
+				this.margin_v = this.rail.margin + (this.rail.min_size - this.bar_v)/2;
+				this.bar_v = this.rail.min_size;
 			}else{
-				this.margin_v = this.options.rail.margin;
+				this.margin_v = this.rail.margin;
 			}
+
 			// limit minimum bar_h size
-			if (this.bar_h < this.options.rail.min_size){
+			if (this.bar_h < this.rail.min_size){
 				// calibrate margin_h size
-				this.margin_h = this.options.rail.margin + (this.options.rail.min_size-this.bar_h)/2;
-				this.bar_h = this.options.rail.min_size;
+				this.margin_h = this.rail.margin + (this.rail.min_size -  this.bar_h)/2;
+				this.bar_h = this.rail.min_size;
 			}else{
-				this.margin_h = this.options.rail.margin;
+				this.margin_h = this.rail.margin;
 			}
 
 			// set bar size

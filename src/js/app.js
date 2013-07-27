@@ -10,11 +10,6 @@
 	var defaultOptions = {
 		autohide: true,
 		useCustomWS: true,
-		rail: {
-			size: 12,	// [px]
-			margin: 2,	// [px]
-			corner: 4	// [px]
-		},
 		excluded: "https://chrome.google.com, "
 				+ "https://mail.google.com, "
 				+ "https://groups.google.com,"
