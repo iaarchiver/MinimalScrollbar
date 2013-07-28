@@ -159,6 +159,10 @@
 			this.scrollbar_v.style.webkitBorderRadius = 5/zoom+'px';
 			this.scrollbar_h.style.webkitBorderRadius = 5/zoom+'px';
 
+			// adjust scrollbar-thumb's border-width in zoom
+			this.scrollbar_v.style.borderWidth = 1/zoom+'px';
+			this.scrollbar_h.style.borderWidth = 1/zoom+'px';
+
 			// calculate bar size
 			this.bar_v = this.winHeight*(window.innerHeight/this.docHeight)/this.zoom_body;
 			this.bar_h = this.winWidth*(window.innerWidth/this.docWidth)/this.zoom_body;
