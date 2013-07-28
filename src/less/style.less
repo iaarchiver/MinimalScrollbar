@@ -22,13 +22,12 @@
   z-index: 2147483647; // 0x7fffffff
 
   -webkit-border-radius: 5px;
-  -webkit-box-sizing: border-box;
-  border: 1px solid rgba(255,255,255,.8);
+  -webkit-box-shadow: 0 0 1px 1px rgba(255,255,255,.9);
 }
 
 #scrollrail-vertical{
   top: 0; right: 0;
-  width: 10px; /* set rail_size in script.js*/
+  width: 12px; /* set rail_size in script.js*/
   height: 100%;
 
   &.disabled{
@@ -37,18 +36,19 @@
 
   &:hover,&.hovered{
     background: rgba(128,128,128,.2);
+    border-left: 1px solid rgba(192,192,192,.3);
   }
 
   #scrollbar-vertical{
-    top: 0; right: 0;
-    width: 50%; height: 0;
+    top: 0; right: 10%;
+    width: 30%; height: 0;
 
     -webkit-transition: width .3s ease, opacity .2s ease, visibility .2s 0s;
   }
   #scrollbar-vertical:hover,
   #scrollbar-vertical.hovered,
   &.hovered #scrollbar-vertical{
-    width: 100%;
+    width: 80%;
     opacity: .8;
   }
 }
@@ -56,7 +56,7 @@
 #scrollrail-horizontal{
   bottom: 0; left: 0;
   width: 100%;
-  height: 10px; /* set rail_size in script.js*/
+  height: 12px; /* set rail_size in script.js*/
 
   &.disabled{
     display: none;
@@ -64,11 +64,12 @@
 
   &:hover,&.hovered{
     background: rgba(128,128,128,.2);
+    border-top: 1px solid rgba(192,192,192,.3);
   }
 
   #scrollbar-horizontal{
-    bottom: 0; left: 0;
-    width: 0; height: 50%;
+    bottom: 10%; left: 0;
+    width: 0; height: 30%;
 
     -webkit-transition: height .3s ease, opacity .2s ease, visibility .2s 0s;
   }
@@ -76,7 +77,7 @@
   #scrollbar-horizontal:hover,
   #scrollbar-horizontal.hovered,
   &.hovered #scrollbar-horizontal{
-    height: 100%;
+    height: 80%;
     opacity: .8;
   }
 }

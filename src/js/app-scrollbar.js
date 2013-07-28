@@ -159,9 +159,13 @@
 			this.scrollbar_v.style.webkitBorderRadius = 5/zoom+'px';
 			this.scrollbar_h.style.webkitBorderRadius = 5/zoom+'px';
 
-			// adjust scrollbar-thumb's border-width in zoom
-			this.scrollbar_v.style.borderWidth = 1/zoom+'px';
-			this.scrollbar_h.style.borderWidth = 1/zoom+'px';
+			// adjust scrollbar-thumb's box-shadow in zoom
+			this.scrollbar_v.style.webkitBoxShadow = '0 0 '+1/zoom+'px '+1/zoom+'px rgba(255,255,255,.9)';
+			this.scrollbar_h.style.webkitBoxShadow = '0 0 '+1/zoom+'px '+1/zoom+'px rgba(255,255,255,.9)';
+
+			// adjust scrollrail's border-width in zoom
+			this.scrollrail_v.style.borderLeftWidth = 1/zoom+'px';
+			this.scrollrail_h.style.borderTopWidth = 1/zoom+'px';
 
 			// calculate bar size
 			this.bar_v = this.winHeight*(window.innerHeight/this.docHeight)/this.zoom_body;
