@@ -6,9 +6,9 @@
   position: fixed;
   margin:0; padding: 0;
   background: transparent;
-  z-index: 2147483647; // webkit
+  z-index: 2147483647; // 0x7fffffff
 
-  -0x7fffffff-transform-origin: 100% 100%;
+  -webkit-transform-origin: 100% 100%;
   -webkit-transition: background .3s ease;
 }
 
@@ -36,7 +36,6 @@
 
   &:hover,&.hovered{
     background: rgba(128,128,128,.2);
-    border-left: 1px solid rgba(192,192,192,.3);
   }
 
   #scrollbar-vertical{
@@ -64,7 +63,6 @@
 
   &:hover,&.hovered{
     background: rgba(128,128,128,.2);
-    border-top: 1px solid rgba(192,192,192,.3);
   }
 
   #scrollbar-horizontal{
