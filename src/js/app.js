@@ -1,5 +1,5 @@
 
-// MinimalScrollbar 
+// MinimalScrollbar
 // MIT Licensed, iaarchiver (c) 2013
 // : app.js
 
@@ -9,7 +9,6 @@
 
 	var defaultOptions = {
 		autohide: true,
-		useCustomWS: true,
 		excluded: "https://chrome.google.com, "
 				+ "https://mail.google.com, "
 				+ "https://groups.google.com,"
@@ -39,14 +38,6 @@
 		return _isIframed;
 	}
 
-	function loadAdditionalCSS(pathToCSS){
-		var linkElement = document.createElement('link');
-		linkElement.rel = 'stylesheet';
-		linkElement.type = 'text/css';
-		linkElement.href = chrome.extension.getURL(pathToCSS);
-
-		document.documentElement.insertBefore(linkElement, document.head);
-	}
 
 	function hideWebkitScrollbar(){
 		var styleElement = document.createElement('style');
@@ -69,7 +60,7 @@
 		setTimeout(function(){
 			html_element.style.overflow = html_overflow_cache;
 			body_element.style.overflow = body_overflow_cache;
-		},0);
+		},100);
 	}
 
 	function isHiddenWebkitScrollbar(){
@@ -101,9 +92,6 @@
 
 			// add CSS to disable webkit-scrollbar appearance
 			if (!isIframed(options)) hideWebkitScrollbar();
-
-			// load CSS for webkit-scrollbar if needed
-			if (options.useCustomWS) loadAdditionalCSS('customWS.min.css');
 
 			// Generate MinimalScrollbars if is not iframed
 			if (!isIframed(options))

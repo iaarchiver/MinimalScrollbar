@@ -1,5 +1,5 @@
 
-// MinimalScrollbar 
+// MinimalScrollbar
 // MIT Licensed, iaarchiver (c) 2013
 // : pages/option.js
 
@@ -8,7 +8,6 @@
 	// default options
 	var defaultOptions = {
 		autohide: true,
-		useCustomWS: true,
 		excluded: "https://chrome.google.com, "
 				+ "https://mail.google.com, "
 				+ "https://groups.google.com, "
@@ -18,12 +17,10 @@
 	// modifiable option list
 	var optionList = [
 		'autohide',
-		'useCustomWS',
 		'excluded'
 	];
 
 	var autohide_option,
-		useCustomWS_option,
 		excluded_option;
 
 	var SAVEDMESSAGE = 'Saved!! Need to reload tabs to apply changes',
@@ -44,13 +41,7 @@
 			saveSettings({'autohide': autohide_option.checked});
 		}, false);
 
-		// useCustomWS option
-		useCustomWS_option = document.getElementById('useCustomWS');
-		useCustomWS_option.addEventListener('change', function(){
-			saveSettings({'useCustomWS': useCustomWS_option.checked});
-		}, false);
-
-		// useCustomWS option
+		// exclude option
 		excluded_option = document.getElementById('excluded');
 		excluded_option.addEventListener('keyup', function(){
 			saveSettings({'excluded': excluded_option.value});
@@ -82,9 +73,6 @@
 
 			// restore autohide option
 			autohide_option.checked = items.autohide;
-
-			// restore useCustomWS option
-			useCustomWS_option.checked = items.useCustomWS;
 
 			// restore excluded option
 			excluded_option.value = items.excluded;

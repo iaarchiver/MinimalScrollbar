@@ -1,5 +1,5 @@
 
-// MinimalScrollbar 
+// MinimalScrollbar
 // MIT Licensed, iaarchiver (c) 2013
 // : app-scrollbar.js
 
@@ -41,7 +41,6 @@
 
 		this.options = _opt;
 		// _opt.autohide: [BOOL]
-		// _opt.useCustomWS: [BOOL]
 
 		this.init();
 	}

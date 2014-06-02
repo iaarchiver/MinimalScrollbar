@@ -81,3 +81,61 @@
     opacity: .8;
   }
 }
+
+
+/////////////////////////////////// WEBKIT-SCROLLBAR //
+
+::-webkit-scrollbar {
+  width: 9px !important;
+  height: 9px !important;
+}
+
+::-webkit-scrollbar-button:start:decrement,
+::-webkit-scrollbar-button:end:increment {
+    height: 0; width: 0;
+    display:none;
+}
+
+::-webkit-scrollbar-track-piece{
+  margin:1px; padding: 0;
+  width: 6px !important;
+  height: 5px !important;
+  background: rgba(255,255,255,.3);
+}
+
+::-webkit-scrollbar:hover{
+  background: rgba(128,128,128,.2);
+}
+
+::-webkit-scrollbar-thumb{
+  margin: 1px !important;
+  border: 2px solid transparent;
+  width: 5px !important;
+  background-color: rgba(0,0,0,.4) !important;
+  z-index: 9999;
+  -webkit-border-radius: 12px;
+
+  background-clip: content-box;
+
+  &:vertical{
+
+  }
+  &:horizontal{
+
+  }
+}
+
+::-webkit-scrollbar-corner {
+  background: rgba(255,255,255,.3);
+  border: 1px solid transparent;
+}
+
+::-webkit-scrollbar-thumb:hover{
+  background-color: rgba(0,0,0,.8) !important;
+  border: 2px solid transparent;
+}
+::-webkit-scrollbar-thumb:active {
+  background-color: rgba(0,0,0,.6) !important;
+  border: 2px solid transparent;
+}
+
