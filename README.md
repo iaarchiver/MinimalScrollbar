@@ -1,5 +1,4 @@
 Minimal Scrollbar
-
 ---
 
 A Google Chrome extension for minimal but useful scrollbars.
@@ -14,6 +13,5 @@ Turn your scrollbars to minimal designed. These are un-minimized on hover, so yo
 
 * transparent background for body's scrollbars and scrollbar-tracks
 * Increase scrollbar-size on hover, and minimize on hover-out
-* auto-hide scrollbars when idle
-
-- exclude some Google web services (Gmail, Groups, ChromeStore) for now.
+* hide body's scrollbars automatically when idle
+* exclude URL setting in option page
