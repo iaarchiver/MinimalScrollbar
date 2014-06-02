@@ -19,7 +19,7 @@
 			size: 12,		// [px]
 			min_size: 25,	// [px]
 			margin: 2,		// [px]
-			corner: 4		// [px]
+			corner: 6		// [px]
 		};
 
 		this.zoom_browser;	// browser's zoom value
@@ -289,6 +289,10 @@
 			this.grabStart(e, caller.childNodes[0]);
 		},
 		onRail: function(e, caller){
+			// reset classNames
+			this.scrollrail_v.classList.remove('hovered');
+			this.scrollrail_h.classList.remove('hovered');
+
 			caller.className = 'hovered';
 			clearTimeout(caller.to); // cancel removing
 
