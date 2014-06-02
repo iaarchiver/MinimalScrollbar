@@ -155,8 +155,8 @@
 			this.scrollrail_h.style.height = this.rail.size/zoom+'px';
 
 			// adjust scrollbar-thumb's border-radius in zoom
-			this.scrollbar_v.style.webkitBorderRadius = 5/zoom+'px';
-			this.scrollbar_h.style.webkitBorderRadius = 5/zoom+'px';
+			this.scrollbar_v.style.webkitBorderRadius = 5/zoom+'px / '+ 7/zoom +'px';
+			this.scrollbar_h.style.webkitBorderRadius = 14/zoom+'px / '+ 10/zoom +'px';
 
 			// adjust scrollbar-thumb's box-shadow in zoom
 			this.scrollbar_v.style.webkitBoxShadow = '0 0 '+1/zoom+'px '+1/zoom+'px rgba(255,255,255,.9)';
