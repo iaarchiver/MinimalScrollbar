@@ -90,6 +90,9 @@
 			// cancel if is excluded url
 			if (isExcluded(options)) return false;
 
+			// add data-attribute to html
+			document.documentElement.setAttribute('data-minimalscrollbar','yes')
+
 			// add CSS to disable webkit-scrollbar appearance
 			if (!isIframed(options)) hideWebkitScrollbar();
 
