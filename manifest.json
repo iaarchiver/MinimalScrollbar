@@ -17,8 +17,5 @@
       "css": [ "style.min.css" ],
       "run_at": "document_start"
     }
-  ],
-  "web_accessible_resources": [
-    "customWS.min.css"
   ]
 }
