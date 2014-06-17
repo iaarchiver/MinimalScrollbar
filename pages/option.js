@@ -43,6 +43,7 @@
 
 		// exclude option
 		excluded_option = document.getElementById('excluded');
+		excluded_option.placeholder = defaultOptions.excluded;
 		excluded_option.addEventListener('keyup', function(){
 			saveSettings({'excluded': excluded_option.value});
 		}, false);
