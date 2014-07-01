@@ -103,6 +103,9 @@
 			// cancel if is hidden aleready
 			if (this.isHidden()) return false;
 
+			// cancel if is fullscreen
+			if (this.isFullscreen()) return false;
+
 			// add scrollrails if removed
 			if (!document.getElementById('scrollrail-vertical') || !document.getElementById('scrollrail-horizontal')){
 				document.getElementsByTagName('body')[0].appendChild(this.scrollrail_v);
@@ -202,6 +205,16 @@
 			this.scrollrail_v.style.display =(isHidden)?'none':'';
 			this.scrollrail_h.style.display =(isHidden)?'none':'';
 			return isHidden;
+		},
+		isFullscreen: function(){
+			var isFullscreen = document.webkitIsFullScreen;
+
+			if (isFullscreen){
+				this.scrollrail_v.style.display ='none';
+			console.log('isFullscreen');
+				this.scrollrail_h.style.display ='none';
+			}
+			return isFullscreen;
 		},
 		cssHack: function(){
 			/* To Solve No Scrollbar in body overflowed */
