@@ -147,7 +147,7 @@
 			this.docHeight = dh; this.docWidth = dw;
 
 			// get zoom levels
-			this.zoom_browser = (window.outerWidth-2)/window.innerWidth;
+			this.zoom_browser = window.outerWidth/window.innerWidth || 1;
 			this.zoom_body = document.body.style.zoom || 1;
 
 			/* may needs refresh() after body.style.zoom changed */
