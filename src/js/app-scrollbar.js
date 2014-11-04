@@ -199,11 +199,13 @@
 		// MISCELLANEOUS  ///////////////////////////////////////////////////////////
 
 		isHidden: function(){
-			var isHidden = (window.getComputedStyle(document.body, null).getPropertyValue('overflow') == 'hidden');
+			var isHidden = (window.getComputedStyle(document.body, null).getPropertyValue('overflow') == 'hidden'),
+				 isHidden_v = isHidden || (window.getComputedStyle(document.body, null).getPropertyValue('overflow-y') == 'hidden'),
+				 isHidden_h = isHidden || (window.getComputedStyle(document.body, null).getPropertyValue('overflow-x') == 'hidden');
 
 			// hide scrollrail-* if body.style.overflow == hidden
-			this.scrollrail_v.style.display =(isHidden)?'none':'';
-			this.scrollrail_h.style.display =(isHidden)?'none':'';
+			this.scrollrail_v.style.display =(isHidden_v)?'none':'';
+			this.scrollrail_h.style.display =(isHidden_h)?'none':'';
 			return isHidden;
 		},
 		isFullscreen: function(){
