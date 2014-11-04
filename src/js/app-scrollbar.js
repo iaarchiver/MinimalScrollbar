@@ -34,6 +34,8 @@
 		this.winHeight; this.winWidth;	// window size
 		this.docHeight; this.docWidth;	// document size
 
+		this.computedBodyStyle;		// document.body.style info
+
 		this.margin_v = this.rail.margin;
 		this.margin_h = this.rail.margin;
 
@@ -57,6 +59,8 @@
 			window.addEventListener('DOMContentLoaded',function(){this.startup();}.bind(this),false);
 		},
 		startup: function(){
+			this.computedBodyStyle = window.getComputedStyle(document.body, null); // get document.body.style info
+
 			this.cssHack(); // solve css problems
 
 			// add div#scrollrail-* to body
@@ -199,9 +203,9 @@
 		// MISCELLANEOUS  ///////////////////////////////////////////////////////////
 
 		isHidden: function(){
-			var isHidden = (window.getComputedStyle(document.body, null).getPropertyValue('overflow') == 'hidden'),
-				 isHidden_v = isHidden || (window.getComputedStyle(document.body, null).getPropertyValue('overflow-y') == 'hidden'),
-				 isHidden_h = isHidden || (window.getComputedStyle(document.body, null).getPropertyValue('overflow-x') == 'hidden');
+			var isHidden = (this.computedBodyStyle.getPropertyValue('overflow') == 'hidden'),
+				 isHidden_v = isHidden || (this.computedBodyStyle.getPropertyValue('overflow-y') == 'hidden'),
+				 isHidden_h = isHidden || (this.computedBodyStyle.getPropertyValue('overflow-x') == 'hidden');
 
 			// hide scrollrail-* if body.style.overflow == hidden
 			this.scrollrail_v.style.display =(isHidden_v)?'none':'';
@@ -220,12 +224,11 @@
 		},
 		cssHack: function(){
 			/* To Solve No Scrollbar in body overflowed */
-			var computedBodyStyle = window.getComputedStyle(document.body, null);
 
 			// body.style.height == window.innerHeight ? body.style.height == 'auto'
-			if ((computedBodyStyle.getPropertyValue('overflow') == 'auto') &&
-				 (computedBodyStyle.getPropertyValue('overflow-y' != 'hidden')) &&
-				(computedBodyStyle.getPropertyValue('height') == window.innerHeight+'px'))
+			if ((this.computedBodyStyle.getPropertyValue('overflow') == 'auto') &&
+				 (this.computedBodyStyle.getPropertyValue('overflow-y' != 'hidden')) &&
+				(this.computedBodyStyle.getPropertyValue('height') == window.innerHeight+'px'))
 				document.body.style.height = 'auto';
 		},
 
