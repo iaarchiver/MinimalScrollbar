@@ -222,6 +222,7 @@
 
 			// body.style.height == window.innerHeight ? body.style.height == 'auto'
 			if ((computedBodyStyle.getPropertyValue('overflow') == 'auto') &&
+				 (computedBodyStyle.getPropertyValue('overflow-y' != 'hidden')) &&
 				(computedBodyStyle.getPropertyValue('height') == window.innerHeight+'px'))
 				document.body.style.height = 'auto';
 		},
