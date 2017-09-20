@@ -98,8 +98,8 @@
 			this.refresh(e);
 
 			// Update Bar Positions
-			var scrollTop = document.body.scrollTop + window.innerHeight/2; // centre pos of scrollTop
-			var scrollLeft = document.body.scrollLeft + window.innerWidth/2; // centre pos of scrollLeft
+			var scrollTop = document.documentElement.scrollTop + window.innerHeight/2; // centre pos of scrollTop
+			var scrollLeft = document.documentElement.scrollLeft + window.innerWidth/2; // centre pos of scrollLeft
 			this.scrollbar_v.style.top = (this.winHeight*(scrollTop/this.docHeight)-this.bar_v/2+this.margin_v)/this.zoom_body+'px';
 			this.scrollbar_h.style.left = (this.winWidth*(scrollLeft/this.docWidth)-this.bar_h/2+this.margin_h)/this.zoom_body+'px';
 		},
@@ -128,8 +128,8 @@
 			}
 
 			// disabled scrollbar if oversized
-			this.scrollrail_v.isActive = (window.innerHeight+1 < document.body.scrollHeight); // +1 for errors
-			this.scrollrail_h.isActive = (window.innerWidth+1 < document.body.scrollWidth); // +1 for errors
+			this.scrollrail_v.isActive = (window.innerHeight+1 < document.documentElement.scrollHeight); // +1 for errors
+			this.scrollrail_h.isActive = (window.innerWidth+1 < document.documentElement.scrollWidth); // +1 for errors
 
 			this.scrollrail_v.className = (!this.scrollrail_v.isActive)? 'disabled': '';
 			this.scrollrail_h.className = (!this.scrollrail_h.isActive)? 'disabled': '';
@@ -137,8 +137,8 @@
 			// get basic vars
 			var wh = window.innerHeight - this.margin_v * 2 - ((this.scrollrail_h.isActive)? this.rail.corner/this.zoom_browser: 0),
 				ww = window.innerWidth - this.margin_h * 2 - ((this.scrollrail_v.isActive)? this.rail.corner/this.zoom_browser: 0),
-				dh = document.body.scrollHeight,
-				dw = document.body.scrollWidth;
+				dh = document.documentElement.scrollHeight,
+				dw = document.documentElement.scrollWidth;
 
 			// cancel if document size unchanged
 			if (this.winHeight === wh
@@ -269,10 +269,10 @@
 			document.body.style.pointerEvents = 'none';
 
 			if (this.grabbedId == 'scrollbar-vertical'){
-				document.body.scrollTop += (e.screenY - this.cacheY)*(this.docHeight/this.winHeight)/this.zoom_browser;
+				document.documentElement.scrollTop += (e.screenY - this.cacheY)*(this.docHeight/this.winHeight)/this.zoom_browser;
 				this.cacheY = e.screenY;
 			}else{
-				document.body.scrollLeft += (e.screenX - this.cacheX)*(this.docWidth/this.winWidth)/this.zoom_browser;
+				document.documentElement.scrollLeft += (e.screenX - this.cacheX)*(this.docWidth/this.winWidth)/this.zoom_browser;
 				this.cacheX = e.screenX;
 			}
 
@@ -299,9 +299,9 @@
 			if (this.grabbedId) return false;
 
 			if (caller.id == 'scrollrail-vertical'){
-				document.body.scrollTop = (e.clientY - this.bar_v/2) * this.docHeight/(this.winHeight);
+				document.documentElement.scrollTop = (e.clientY - this.bar_v/2) * this.docHeight/(this.winHeight);
 			}else{
-				document.body.scrollLeft = (e.clientX - this.bar_h/2) * this.docWidth/(this.winWidth);
+				document.documentElement.scrollLeft = (e.clientX - this.bar_h/2) * this.docWidth/(this.winWidth);
 			}
 
 			this.update();
